@@ -1,7 +1,6 @@
 package com.web.config;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -29,8 +28,8 @@ public class CustomUserDetails  implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(user.getRole());
-		
-		return List.of(simpleGrantedAuthority);
+		return Collections.unmodifiableList(Arrays.asList(simpleGrantedAuthority));
+		//return List.of(simpleGrantedAuthority);
 		//List.of method creates immutable list which is part of java 9;
 	}
 
