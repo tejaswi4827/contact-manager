@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<title th:text="${title}"></title>
+</head>
+<body>
+	<section>
+		<div class="container">
+
+
+			<div class="card">
+
+				<div class="card-body">
+					<div class="container text-center">
+						<img src="" style="height: 200px; width: 200px;"
+							class="my_profile " th:src="@{'/img/'+${user.imageUrl}}"
+							alt="profile photo" />
+					</div>
+					<h1
+						class="text-center mt-3 text-secondary font-italic font-weight-light">Enjoy
+						Adding your contacts</h1>
+				</div>
+			</div>
+			<div class="card mt-3">
+
+				<div class="card-body">
+					<div class="container text-center">
+						<h3 class="my-3">Support Us</h3>
+						<input id="payment_field" type="text" class="form-control my-2"
+							placeholder="Enter amount to pay" />
+						<div class="container text-center mt-4">
+							<button onclick = "paymentStart()" class="btn btn-success btn-block">Checkout</button>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>
+
+
+
+

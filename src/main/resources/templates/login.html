@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<title th:text="${title}"></title>
+</head>
+<body>
+	<section class="vh-100 " style="background-color: #508bfc;">
+		<div class="container py-5 h-100">
+			<div
+				class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col-12 col-md-8 col-lg-6 col-xl-5">
+					<div class="card shadow-2-strong" style="border-radius: 1rem;">
+						<div class="card-body p-4 ">
+							<form id="login-form" class="form" th:action="@{/dologin}"
+								method="post">
+								<h3 class="mb-5 text-center">Log in</h3>
+
+								<div th:if="${param.error}" class="alert alert-danger">
+									Invalid username and paasword</div>
+								<div th:if="${param.logout}" class="alert alert-success">
+									You have been logged out</div>
+								<div th:if="${param.change}" class="alert alert-success">
+									<p th:text="${param.change}" />
+								</div>
+
+
+								<div class="form-outline mb-4">
+									<label class="form-label" for="typeEmailX-2">Username:</label>
+									<input type="email" name="username" id="typeEmailX-2"
+										class="form-control form-control-lg" />
+								</div>
+
+								<div class="form-outline mb-4">
+									<label class="form-label" for="form3Example4cg">Password:</label>
+									<input type="password" name="password" id="form3Example4cg"
+										class="form-control form-control-lg" required />
+
+								</div>
+
+								<!-- Checkbox -->
+								<div class="form-check d-flex justify-content-start mb-4">
+									<input class="form-check-input" type="checkbox" value=""
+										id="form1Example3" /> <label class="form-check-label"
+										for="form1Example3"> Remember password </label>
+								</div>
+
+								<button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+							</form>
+							<hr class="my-1">
+							<p class="text-center text-muted mt-3 mb-0">
+								New user? <a href="#!" th:href="@{/signup/}"
+									class="fw-bold text-body"><u>Register here</u></a>
+							</p>
+
+
+							<div class="container">
+								<p class="text-center text-muted mt-3 mb-0">
+									<a href="#!" th:href="@{/forgot}" class="fw-bold text-body"><u>Forgot
+											Password</u></a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

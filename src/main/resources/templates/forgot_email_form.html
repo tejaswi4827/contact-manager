@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<title th:text="${title}"></title>
+</head>
+<body>
+	<section class="vh-100" style="background-color: #508bfc;">
+		<div class="container py-5 h-93">
+			<div
+				class="mask d-flex justify-content-center align-items-center h-100">
+				<div class="col-12 col-md- col-lg-7 col-xl-6">
+					<div class="card shadow-2-strong" style="border-radius: 1rem;">
+						<div class="card-body p-4 ">
+
+							
+							<!-- messsage box of add contact page -->
+
+
+							<div th:if="${session.message}" class="container ">
+								<div class="alert alert-danger my-2 text-center" role="alert">
+									<span th:text="${session.message}"></span>
+								</div>
+								<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+							</div>
+							<h3 class="text-center m-3">Your Registered Email</h3>
+							<form id="login-form" class="form" th:action="@{/send-otp}"
+								method="post">
+								<div class="form-outline mb-4">
+
+									<input type="email" name="email" id="typeEmailX-2"
+										placeholder="Enter your email here"
+										class="form-control form-control-lg" required />
+								</div>
+								<div class="container text-center">
+									<button class="btn btn-primary " type="submit">Send
+										Otp</button>
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

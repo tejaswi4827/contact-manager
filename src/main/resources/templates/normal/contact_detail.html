@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<title th:text="${title}"></title>
+</head>
+<body>
+	<section>
+		<div class="card mr-3 ml-3">
+			<div card="card-body" th:if="${contact}">
+				<div class="container text-center">
+
+					<img src="" style="height: 200px; width: 200px;"
+						class="my_profile " th:src="@{'/img/'+${contact.image}}"
+						alt="profile photo" />
+
+					<h3 class="mt-3">
+						<span th:text="${contact.name}"></span></span>
+					</h3>
+
+
+					<table class="table ">
+						<thead>
+							<tr>
+								<th scope="col">#ID</th>
+								<td scope="col" th:text="'CMUSER'+ ${contact.cid}"></td>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">Email</th>
+								<td th:text="${contact.email}"></td>
+
+							</tr>
+
+							<tr>
+								<th scope="row">Phone</th>
+								<td th:text="${contact.phone}"></td>
+
+							</tr>
+							<tr>
+								<th scope="row">Work</th>
+								<td th:text="${contact.work}"></td>
+
+							</tr>
+
+						</tbody>
+					</table>
+
+
+					<div class="description">
+						<!-- utext to solve html -->
+						<th:block th:utext="${contact.description}"></th:block>
+					</div>
+					<!-- th:href="@{'/user/delete/'+${contact.cid}}" for passing id dynamically to delete contact -->
+					<div class="container mt-3">
+						<a th:onclick="|deleteContact(${contact.cid})|"
+							class="btn btn-danger btn-sm btn-block">Delete</a> <a
+							th:href="@{'/user/add-contact/'+${contact.cid}}"
+							class="btn btn-primary btn-sm btn-block">Update</a>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- this div will run when contact is empty it means user want to access some other user contact -->
+		<div>
+			<h1 th:unless="${contact}"
+				class="text-center p-3 text-white bg-danger">You don't have
+				permission to view this contact</h1>
+		</div>
+
+	</section>
+</body>
+</html>
+
+
+
+

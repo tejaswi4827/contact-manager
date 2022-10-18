@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+
+<link rel="stylesheet" th:href="@{/css/signupstyle.css}" />
+</head>
+<body>
+	<section class="vh-93 bg-image"
+		style="background-color: #508bfc;">
+		<!--  style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');  to keep pic instead of blue colour -->
+		<div class="mask d-flex align-items-center h-100 gradient-custom-3">
+			<div class="container h-100">
+				<div
+					class="row d-flex justify-content-center align-items-center h-100">
+					<div class="col-12 col-md-9 col-lg-7 col-xl-6">
+						<div class="card" style="border-radius: 15px;">
+
+							<!-- message showing -->
+
+							<div th:if="${session.message}"
+								th:classappend="${session.message.type}"
+								class="alert alert-primary" role="alert">
+								<p th:text="${session.message.content}"></p>
+
+								<th:block th:text="${#session.removeAttribute('message')}">
+									<th:block>
+							</div>
+
+							<div class="card-body p-4">
+
+
+
+								<div class="text-center">
+									<img src="" style="width: 100px;" th:src="@{../img/note.png}" />
+								</div>
+								<h2 class="text-uppercase text-center mb-3">Create an
+									account</h2>
+
+								<form th:action="@{/do_register}" method="POST"
+									th:object="${user}">
+
+									<div class="form-outline mb-2">
+										<label class="form-label" for="form3Example1cg">Your
+											Name</label> <input type="text" name="name" id="form3Example1cg"
+											class="form-control form-control-lg" required
+											th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"
+											th:value="${user.name}" />
+
+
+										<div class="invalid-feedback"
+											th:each="e : ${#fields.errors('name')}" th:text="${e}">
+
+										</div>
+									</div>
+									<!-- email field -->
+									<div class="form-outline mb-2">
+										<label class="form-label" for="form3Example3cg">Your
+											Email</label> <input type="email" name="email" id="form3Example3cg"
+											class="form-control form-control-lg" required
+											th:value="${user.email}" />
+									</div>
+
+									<div class="form-outline mb-4">
+										<label class="form-label" for="form3Example4cg">Password</label>
+										<input type="password" name="password" id="form3Example4cg"
+											class="form-control form-control-lg" required />
+									</div>
+
+									<!-- user about field -->
+
+
+									<div class="form-group">
+										<textarea th:text="${user.about}" name="about"
+											placeholder="Enter something about yourself" rows="2"
+											class="form-control"></textarea>
+									</div>
+
+									<div class="form-group form-check text-center">
+										<input type="checkbox" name="agreement"
+											class="form-check-input" id="agreement" /> <label
+											for="agreement" name="agreement">Accept terms and
+											conditions</label>
+									</div>
+									<div class="d-flex justify-content-center">
+										<button type="submit"
+											class="btn btn-primary btn-block btn-lg ">Register</button>
+									</div>
+									<!-- gradient-custom-4 text-body    //keep success instead of primary for green colour button with black text  -->
+
+
+								</form>
+
+
+								<p class="text-center text-muted mt-3 mb-0">
+									Have already an account? <a href="#!" th:href="@{/signin}"
+										class="fw-bold text-body"><u>Login here</u></a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
